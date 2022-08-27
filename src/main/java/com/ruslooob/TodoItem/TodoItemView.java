@@ -10,9 +10,9 @@ import javafx.scene.paint.Color;
 public class TodoItemView {
 
     Parent view;
-    Label header = new Label("TO-13441");
-    Label content = new Label("Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века.");
-    Label createDate = new Label("10.08.2022");
+    Label header = new Label("");
+    Label content = new Label("");
+    Label createDate = new Label("");
 
     public TodoItemView() {
         view = create();
@@ -24,15 +24,17 @@ public class TodoItemView {
                 new Background(
                         new BackgroundFill(
                                 Color.web("#ffffff", 0.5),
-                                new CornerRadii(10),
+                                null,
                                 null
                         )
                 )
         );
         container.setPadding(new Insets(5, 10, 5, 10));
+        container.setMaxWidth(671);
         content.setTextOverrun(OverrunStyle.ELLIPSIS);
         VBox headerWithContent = new VBox(10, header, content);
         VBox.setVgrow(headerWithContent, Priority.ALWAYS);
+        createDate.setMinWidth(80);
         container.getChildren().addAll(headerWithContent, createDate);
         container.setBorder(
                 new Border(
@@ -44,7 +46,7 @@ public class TodoItemView {
                 )
         );
 
-        return container;
+        return new StackPane(container);
     }
 
     public Parent get() {

@@ -1,18 +1,21 @@
 package com.ruslooob.TodoList;
 
-import com.ruslooob.TodoItem.TodoItemView;
+import com.ruslooob.TodoItem.TodoItem;
+import com.ruslooob.TodoItem.TodoItemCell;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.control.Control;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 public class TodoListView {
+
     Label header = new Label("Все заметки");
     Parent view;
+
+    ListView<TodoItem> listItems = new ListView<>();
 
     public TodoListView() {
         this.view = create();
@@ -29,23 +32,25 @@ public class TodoListView {
                                 null)
                 )
         );
-        VBox listItems = new VBox(5);
-        for (int i = 0; i < 10; i++) {
-            Parent parent = new TodoItemView().get();
-            listItems.getChildren().add(parent);
-        }
-        container.getColumnConstraints().add(
-                new ColumnConstraints(
-                        Control.USE_COMPUTED_SIZE,
-                        Control.USE_COMPUTED_SIZE,
-                        Control.USE_COMPUTED_SIZE
+        listItems.setCellFactory(param -> new TodoItemCell());
+        listItems.prefWidthProperty().bind(container.widthProperty());
+        listItems.setBackground(
+                new Background(
+                        new BackgroundFill(
+                                Color.web("#ddedfa"),
+                                null,
+                                null
+                        )
                 )
         );
-        container.getRowConstraints().add(
-                new RowConstraints(
-                Control.USE_COMPUTED_SIZE,
-                Control.USE_COMPUTED_SIZE,
-                Control.USE_COMPUTED_SIZE
+        listItems.setBorder(
+                new Border(
+                    new BorderStroke(
+                            null,
+                            BorderStrokeStyle.NONE,
+                            new CornerRadii(10),
+                            null
+                    )
                 )
         );
         GridPane.setConstraints(header, 0, 0);
