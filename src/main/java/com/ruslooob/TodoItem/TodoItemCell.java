@@ -24,12 +24,14 @@ public class TodoItemCell extends ListCell<TodoItem> {
             view.content.textProperty().bind(item.content);
             view.createDate.textProperty().bind(item.createDate.asString());
             view.get().setOnMouseClicked(event -> {
-                Stage stage = new Stage();
-                Scene scene = new Scene(new StackPane(new Label("TodoItem view Dialog")), 500, 500);
-                stage.setScene(scene);
-                stage.initOwner(getScene().getWindow());
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.show();
+                if (event.getClickCount() == 2) {
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(new StackPane(new Label("TodoItem view Dialog")), 500, 500);
+                    stage.setScene(scene);
+                    stage.initOwner(getScene().getWindow());
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.show();
+                }
             });
             setPadding(new Insets(0));
             setGraphic(view.get());
