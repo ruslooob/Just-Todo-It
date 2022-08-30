@@ -1,6 +1,7 @@
-package com.ruslooob.TodoItem;
+package com.ruslooob.TodoList;
 
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.OverrunStyle;
@@ -35,7 +36,12 @@ public class TodoItemView {
         VBox headerWithContent = new VBox(10, header, content);
         VBox.setVgrow(headerWithContent, Priority.ALWAYS);
         createDate.setMinWidth(80);
-        container.getChildren().addAll(headerWithContent, createDate);
+        container.getChildren().addAll(
+                headerWithContent,
+                getFluentSeparator(),
+                createDate
+        );
+        container.setSpacing(50);
         container.setBorder(
                 new Border(
                         new BorderStroke(
@@ -47,6 +53,12 @@ public class TodoItemView {
         );
 
         return new StackPane(container);
+    }
+
+    private Node getFluentSeparator() {
+        Pane separator = new Pane();
+        HBox.setHgrow(separator, Priority.ALWAYS);
+        return separator;
     }
 
     public Parent get() {

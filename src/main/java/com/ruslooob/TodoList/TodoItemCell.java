@@ -1,5 +1,6 @@
-package com.ruslooob.TodoItem;
+package com.ruslooob.TodoList;
 
+import com.ruslooob.TodoItem;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -7,6 +8,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.time.format.DateTimeFormatter;
 
 public class TodoItemCell extends ListCell<TodoItem> {
 
@@ -21,8 +24,8 @@ public class TodoItemCell extends ListCell<TodoItem> {
             setText(null);
             TodoItemView view = new TodoItemView();
             view.header.setText(item.getHeader());
-            view.content.textProperty().bind(item.content);
-            view.createDate.textProperty().bind(item.createDate.asString());
+            view.content.setText(item.getContent());
+            view.createDate.setText(item.getCreateDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
             view.get().setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2) {
                     Stage stage = new Stage();

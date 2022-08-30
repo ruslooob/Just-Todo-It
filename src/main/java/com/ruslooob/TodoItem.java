@@ -1,4 +1,4 @@
-package com.ruslooob.TodoItem;
+package com.ruslooob;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -8,9 +8,9 @@ import java.time.LocalDate;
 import java.time.Month;
 
 public class TodoItem {
-    StringProperty header = new SimpleStringProperty("TO-13441");
-    StringProperty content = new SimpleStringProperty("Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века.");
-    SimpleObjectProperty<LocalDate> createDate = new SimpleObjectProperty<>(LocalDate.of(2022, Month.APRIL, 10));
+    public StringProperty header = new SimpleStringProperty("");
+    public StringProperty content = new SimpleStringProperty("");
+    public SimpleObjectProperty<LocalDate> createDate = new SimpleObjectProperty<>(LocalDate.of(2022, Month.APRIL, 10));
 
     public TodoItem(String header, String content, LocalDate createDate) {
         setHeader(header);
@@ -45,7 +45,5 @@ public class TodoItem {
     public void setCreateDate(LocalDate createDate) {
         this.createDate.set(createDate);
     }
-
-
 
 }
