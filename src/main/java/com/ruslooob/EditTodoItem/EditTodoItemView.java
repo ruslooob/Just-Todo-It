@@ -1,4 +1,4 @@
-package com.ruslooob.CreateTodoItem;
+package com.ruslooob.EditTodoItem;
 
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
@@ -8,14 +8,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class CreateTodoItemView {
-
+public class EditTodoItemView {
     private final Parent view;
     TextField header = new TextField("");
     TextField content = new TextField("");
-    Button saveButton = new Button("Создать");
+    Button saveButton = new Button("Обновить");
 
-    public CreateTodoItemView() {
+    public EditTodoItemView() {
         this.view = create();
     }
 
@@ -33,5 +32,4 @@ public class CreateTodoItemView {
     public Parent get() {
         return view;
     }
-
 }

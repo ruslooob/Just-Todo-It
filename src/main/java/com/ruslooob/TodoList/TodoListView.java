@@ -15,7 +15,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 public class TodoListView {
 
-    Parent view;
+    private final Parent view;
     GridPane container = new GridPane();
     Label header = new Label();
     Button addButton = new Button("", new FontIcon(FontAwesome.PLUS));

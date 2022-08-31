@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 
 public class TodoItemView {
 
-    Parent view;
+    private final Parent view;
     Label header = new Label("");
     Label content = new Label("");
     Label createDate = new Label("");
@@ -38,7 +38,7 @@ public class TodoItemView {
         createDate.setMinWidth(80);
         container.getChildren().addAll(
                 headerWithContent,
-                getFluentSeparator(),
+                getSeparator(),
                 createDate
         );
         container.setSpacing(50);
@@ -55,7 +55,7 @@ public class TodoItemView {
         return new StackPane(container);
     }
 
-    private Node getFluentSeparator() {
+    private Node getSeparator() {
         Pane separator = new Pane();
         HBox.setHgrow(separator, Priority.ALWAYS);
         return separator;
