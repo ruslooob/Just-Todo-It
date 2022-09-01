@@ -6,7 +6,7 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 
 public class EditTodoItemController {
-
+    // fixme убрать логику из конструктора и перенести ее в public-метод start
     public EditTodoItemController(EditTodoItemView view, TodoItem todoItem, EditTodoItemCommand editTodoItemCommand) {
         view.header.setText(todoItem.getHeader());
         view.content.setText(todoItem.getContent());

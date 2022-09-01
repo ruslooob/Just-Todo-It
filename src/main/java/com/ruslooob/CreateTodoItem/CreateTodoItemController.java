@@ -1,7 +1,6 @@
 package com.ruslooob.CreateTodoItem;
 
 import com.ruslooob.Commands.Command;
-import com.ruslooob.Commands.CreateTodoItemCommand;
 import com.ruslooob.TodoItem;
 import javafx.scene.Node;
 import javafx.stage.Stage;

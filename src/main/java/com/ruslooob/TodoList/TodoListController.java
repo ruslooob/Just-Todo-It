@@ -20,7 +20,8 @@ public class TodoListController {
 
     private TodoList todoList;
 
-    public TodoListController(TodoListView view) {
+    public TodoListController(TodoListView view, TodoList initialState) {
+        this.todoList = initialState;
         setView(view);
     }
 
@@ -66,7 +67,8 @@ public class TodoListController {
             EditTodoItemController controller = new EditTodoItemController(
                     editTodoItemView,
                     itemForReplace,
-                    command);
+                    command
+            );
 
             stage.setScene(new Scene(editTodoItemView.get()));
             stage.setTitle("Edit Todo");
@@ -85,5 +87,7 @@ public class TodoListController {
         };
     }
 
-
+    public TodoList getTodoList() {
+        return todoList;
+    }
 }

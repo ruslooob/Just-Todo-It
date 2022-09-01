@@ -3,7 +3,6 @@ package com.ruslooob.Commands;
 import com.ruslooob.IdGenerator;
 import com.ruslooob.TodoItem;
 import javafx.collections.ObservableList;
-import javafx.scene.control.SelectionModel;
 
 public class CreateTodoItemCommand implements Command {
 
@@ -17,7 +16,7 @@ public class CreateTodoItemCommand implements Command {
 
     @Override
     public void execute() {
-        // запрос не сервер с получением id
+        // запрос на сервер с получением id
         todoItem.setId(IdGenerator.nextId());
         this.todoItems.add(0, todoItem);
     }

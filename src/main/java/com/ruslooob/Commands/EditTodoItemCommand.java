@@ -1,7 +1,6 @@
 package com.ruslooob.Commands;
 
 import com.ruslooob.TodoItem;
-import javafx.collections.ObservableList;
 
 public class EditTodoItemCommand {
 

@@ -23,9 +23,8 @@ public class TodoItemView {
     }
 
     private Parent create() {
-        HBox container = new HBox();
         VBox headerWithContent = vbox(10, header, content);
-        HBox container2 = hbox(
+        HBox container = hbox(
                 671.,
                 new Background(
                         new BackgroundFill(
@@ -47,35 +46,8 @@ public class TodoItemView {
                 getSeparator(),
                 createDate
         );
-        container.setBackground(
-                new Background(
-                        new BackgroundFill(
-                                Color.web("#ffffff", 0.5),
-                                null,
-                                null
-                        )
-                )
-        );
-        container.setPadding(new Insets(5, 10, 5, 10));
-        container.setMaxWidth(671);
         content.setTextOverrun(OverrunStyle.ELLIPSIS);
         createDate.setMinWidth(80);
-        container.getChildren().addAll(
-                headerWithContent,
-                getSeparator(),
-                createDate
-        );
-        container.setSpacing(50);
-        container.setBorder(
-                new Border(
-                        new BorderStroke(
-                                null,
-                                null,
-                                new CornerRadii(10),
-                                null)
-                )
-        );
-
         return new StackPane(container);
     }
 
