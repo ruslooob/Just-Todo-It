@@ -6,13 +6,15 @@ import javafx.collections.ObservableList;
 public class DeleteTodoItemCommand {
 
     private final ObservableList<TodoItem> todoItems;
+    private final TodoItem itemForRemove;
 
-    public DeleteTodoItemCommand(ObservableList<TodoItem> todoItems) {
+    public DeleteTodoItemCommand(ObservableList<TodoItem> todoItems, TodoItem itemForRemove) {
         this.todoItems = todoItems;
+        this.itemForRemove = itemForRemove;
     }
 
-    public void execute(TodoItem todoItem) {
-        todoItems.removeIf(item -> item.equals(todoItem));
+    public void execute() {
+        todoItems.removeIf(item -> item.equals(itemForRemove));
     }
 
 }

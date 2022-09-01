@@ -8,6 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import static com.ruslooob.Helpers.VBoxHelper.vbox;
+
 public class EditTodoItemView {
     private final Parent view;
     TextField header = new TextField("");
@@ -19,7 +21,7 @@ public class EditTodoItemView {
     }
 
     private Parent create() {
-        VBox container = new VBox(
+        VBox container = vbox(
                 15,
                 new HBox(10, new Label("Заголовок"), header),
                 new HBox(10, new Label("Содержимое"), content),

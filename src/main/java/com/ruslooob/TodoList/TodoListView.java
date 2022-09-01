@@ -18,6 +18,8 @@ public class TodoListView {
     private final Parent view;
     GridPane container = new GridPane();
     Label header = new Label();
+    //todo disable buttons if not select todos
+    //todo move buttons to another class, which will be called ActionButtons. This class will be encapsulate all buttons logic
     Button addButton = new Button("", new FontIcon(FontAwesome.PLUS));
     Button editButton = new Button("", new FontIcon(FontAwesome.PENCIL));
     Button deleteButton = new Button("", new FontIcon(FontAwesome.TRASH));
@@ -43,6 +45,7 @@ public class TodoListView {
         container.getChildren().addAll(createHeader(), createToolBar(), createListItems());
         ScrollPane scrollPane = new ScrollPane(container);
         scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
         return scrollPane;
     }
 

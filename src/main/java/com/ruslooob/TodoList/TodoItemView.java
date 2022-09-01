@@ -8,6 +8,9 @@ import javafx.scene.control.OverrunStyle;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
+import static com.ruslooob.Helpers.HBoxHelpers.hbox;
+import static com.ruslooob.Helpers.VBoxHelper.vbox;
+
 public class TodoItemView {
 
     private final Parent view;
@@ -21,6 +24,29 @@ public class TodoItemView {
 
     private Parent create() {
         HBox container = new HBox();
+        VBox headerWithContent = vbox(10, header, content);
+        HBox container2 = hbox(
+                671.,
+                new Background(
+                        new BackgroundFill(
+                                Color.web("#ffffff", 0.5),
+                                null,
+                                null
+                        )
+                ),
+                new Border(
+                        new BorderStroke(
+                                null,
+                                null,
+                                new CornerRadii(10),
+                                null)
+                ),
+                new Insets(5, 10, 5, 10),
+                50.,
+                headerWithContent,
+                getSeparator(),
+                createDate
+        );
         container.setBackground(
                 new Background(
                         new BackgroundFill(
@@ -33,8 +59,6 @@ public class TodoItemView {
         container.setPadding(new Insets(5, 10, 5, 10));
         container.setMaxWidth(671);
         content.setTextOverrun(OverrunStyle.ELLIPSIS);
-        VBox headerWithContent = new VBox(10, header, content);
-        VBox.setVgrow(headerWithContent, Priority.ALWAYS);
         createDate.setMinWidth(80);
         container.getChildren().addAll(
                 headerWithContent,

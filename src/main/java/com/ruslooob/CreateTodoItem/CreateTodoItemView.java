@@ -5,8 +5,10 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
+import static com.ruslooob.Helpers.HBoxHelpers.hbox;
+import static com.ruslooob.Helpers.VBoxHelper.vbox;
 
 public class CreateTodoItemView {
 
@@ -20,10 +22,10 @@ public class CreateTodoItemView {
     }
 
     private Parent create() {
-        VBox container = new VBox(
+        VBox container = vbox(
                 15,
-                new HBox(10, new Label("Заголовок"), header),
-                new HBox(10, new Label("Содержимое"), content),
+                hbox(10, new Label("Заголовок"), header),
+                hbox(10, new Label("Содержимое"), content),
                 saveButton
         );
         container.setPadding(new Insets(20));

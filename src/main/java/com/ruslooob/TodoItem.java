@@ -8,23 +8,20 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Objects;
 
-import static com.ruslooob.IdGenerator.nextId;
 
 public class TodoItem {
-    public final Long id;
+    // todo что делать с id
+    private Long id;
     private StringProperty header = new SimpleStringProperty("");
     private StringProperty content = new SimpleStringProperty("");
-    private SimpleObjectProperty<LocalDate> createDate = new SimpleObjectProperty<>(LocalDate.of(2022, Month.APRIL, 10));
+    private final SimpleObjectProperty<LocalDate> createDate = new SimpleObjectProperty<>(LocalDate.of(2022, Month.APRIL, 10));
 
-    public TodoItem(String header, String content, LocalDate createDate) {
-        this();
+    public TodoItem(String header, String content) {
         setHeader(header);
         setContent(content);
-        setCreateDate(createDate);
     }
 
     public TodoItem() {
-        this.id = nextId();
     }
 
     @Override
@@ -38,6 +35,14 @@ public class TodoItem {
     @Override
     public int hashCode() {
         return Objects.hash(header, content, createDate);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public StringProperty headerProperty() {
