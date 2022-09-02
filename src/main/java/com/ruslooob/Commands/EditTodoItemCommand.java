@@ -2,7 +2,7 @@ package com.ruslooob.Commands;
 
 import com.ruslooob.TodoItem;
 
-public class EditTodoItemCommand {
+public class EditTodoItemCommand implements Command {
 
     private final TodoItem itemForReplace;
 

@@ -8,6 +8,8 @@ import javafx.scene.control.OverrunStyle;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
+import static com.ruslooob.Helpers.BackgroundFillHelper.backgroundFill;
+import static com.ruslooob.Helpers.BorderStrokeHelper.borderStroke;
 import static com.ruslooob.Helpers.HBoxHelpers.hbox;
 import static com.ruslooob.Helpers.VBoxHelper.vbox;
 
@@ -24,28 +26,23 @@ public class TodoItemView {
 
     private Parent create() {
         VBox headerWithContent = vbox(10, header, content);
-        HBox container = hbox(
-                671.,
-                new Background(
-                        new BackgroundFill(
-                                Color.web("#ffffff", 0.5),
-                                null,
-                                null
+        HBox container = hbox()
+                .maxWidth(671.)
+                .background(
+                        new Background(
+                                backgroundFill(Color.web("#ffffff", 0.5))
                         )
-                ),
-                new Border(
-                        new BorderStroke(
-                                null,
-                                null,
-                                new CornerRadii(10),
-                                null)
-                ),
-                new Insets(5, 10, 5, 10),
-                50.,
-                headerWithContent,
-                getSeparator(),
-                createDate
-        );
+                ).border(
+                        new Border(
+                                borderStroke(new CornerRadii(10))
+                        )
+                ).padding(new Insets(5, 10, 5, 10))
+                .spacing(50.)
+                .childrens(
+                        headerWithContent,
+                        getSeparator(),
+                        createDate
+                ).build();
         content.setTextOverrun(OverrunStyle.ELLIPSIS);
         createDate.setMinWidth(80);
         return new StackPane(container);

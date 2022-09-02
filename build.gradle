@@ -3,7 +3,6 @@ plugins {
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.13'
     id 'org.beryx.jlink' version '2.9.4'
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 group 'com.ruslooob'
@@ -31,9 +30,13 @@ application {
 
 javafx {
     version = '17.0.0.1'
-    modules = ['javafx.controls', 'javafx.swing']
+    modules = ['javafx.controls']
 }
-
+/*
+simple exe - jpackage --type exe --input . --dest . --main-jar '.\Just Todo It-1.0-SNAPSHOT.jar' --main-class com.ruslooob.App --module-path "C:\Users\Ruslan\javafx-jmods-18.0.2" --add-modules javafx.controls --win-shortcut --win-menu
+exe with inner packed virtual machine jpackage --type exe --input . --dest . --main-jar '.\Just Todo It-1.0-SNAPSHOT.jar' --main-class com.ruslooob.App --module-path "C:\Users\Ruslan\javafx-jmods-18.0.2" --add-modules javafx.controls --win-shortcut --win-menu --name "Just Todo It" --jlink-options --bind-services
+todo fix problem process exited with code 1
+*/
 jlink {
     launcher {
         name = 'hellofx'

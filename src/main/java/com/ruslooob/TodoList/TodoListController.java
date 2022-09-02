@@ -12,9 +12,14 @@ import com.ruslooob.TodoItem;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import static com.ruslooob.Helpers.StageHelpers.stage;
+import static javafx.scene.control.Alert.AlertType.CONFIRMATION;
 
 public class TodoListController {
 
@@ -26,9 +31,13 @@ public class TodoListController {
     }
 
     private void setView(TodoListView view) {
-        todoList = new TodoList();
         view.listItems.setItems(todoList.getTodoItems());
         view.listItems.setPlaceholder(new Label("Create you first todo!"));
+        view.listItems.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                showEditTodoItemDialog(view);
+            }
+        });
         view.addButton.setOnAction(addButtonOnAction(view));
         view.editButton.setOnAction(editButtonOnAction(view));
         view.deleteButton.setOnAction(deleteButtonOnAction(view));
@@ -36,10 +45,6 @@ public class TodoListController {
 
     private EventHandler<ActionEvent> addButtonOnAction(TodoListView todoListView) {
         return event -> {
-            Stage stage = new Stage();
-            stage.initOwner(todoListView.get().getScene().getWindow());
-            stage.initModality(Modality.WINDOW_MODAL);
-
             TodoItem todoItem = new TodoItem();
             Command command = new CreateTodoItemCommand(todoList.getTodoItems(), todoItem);
             CreateTodoItemView createTodoItemView = new CreateTodoItemView();
@@ -48,42 +53,52 @@ public class TodoListController {
                     todoItem,
                     command
             );
-
-            stage.setScene(new Scene(createTodoItemView.get()));
-            stage.setTitle("Create Todo");
-            stage.show();
+            stage(
+               "CreateTodo",
+                    todoListView.get().getScene().getWindow(),
+                    Modality.WINDOW_MODAL,
+                    new Scene(createTodoItemView.get())
+            ).show();
         };
     }
 
     private EventHandler<ActionEvent> editButtonOnAction(TodoListView todoListView) {
         return event -> {
-            Stage stage = new Stage();
-            stage.initOwner(todoListView.get().getScene().getWindow());
-            stage.initModality(Modality.WINDOW_MODAL);
-
-            TodoItem itemForReplace = todoListView.listItems.getSelectionModel().getSelectedItem();
-            EditTodoItemCommand command = new EditTodoItemCommand(itemForReplace);
-            EditTodoItemView editTodoItemView = new EditTodoItemView();
-            EditTodoItemController controller = new EditTodoItemController(
-                    editTodoItemView,
-                    itemForReplace,
-                    command
-            );
-
-            stage.setScene(new Scene(editTodoItemView.get()));
-            stage.setTitle("Edit Todo");
-            stage.show();
+            showEditTodoItemDialog(todoListView);
         };
+    }
+
+    private void showEditTodoItemDialog(TodoListView todoListView) {
+        Stage stage = new Stage();
+        stage.initOwner(todoListView.get().getScene().getWindow());
+        stage.initModality(Modality.WINDOW_MODAL);
+
+        TodoItem itemForReplace = todoListView.listItems.getSelectionModel().getSelectedItem();
+        Command command = new EditTodoItemCommand(itemForReplace);
+        EditTodoItemView editTodoItemView = new EditTodoItemView();
+        EditTodoItemController controller = new EditTodoItemController(
+                editTodoItemView,
+                itemForReplace,
+                command
+        );
+        controller.start();
+        stage.setScene(new Scene(editTodoItemView.get()));
+        stage.setTitle("Edit Todo");
+        stage.show();
     }
 
     private EventHandler<ActionEvent> deleteButtonOnAction(TodoListView todoListView) {
         return event -> {
-            // todo confirmation alert
-            DeleteTodoItemCommand deleteTodoItemCommand = new DeleteTodoItemCommand(
-                    todoList.getTodoItems(),
-                    todoListView.listItems.getSelectionModel().getSelectedItem()
-            );
-            deleteTodoItemCommand.execute();
+            /*todo alert localization*/
+            Alert alert = new Alert(CONFIRMATION, "Вы действительно хотите удалить заметку?");
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.APPLY) {
+                DeleteTodoItemCommand deleteTodoItemCommand = new DeleteTodoItemCommand(
+                        todoList.getTodoItems(),
+                        todoListView.listItems.getSelectionModel().getSelectedItem()
+                );
+                deleteTodoItemCommand.execute();
+            }
         };
     }
 

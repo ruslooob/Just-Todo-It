@@ -1,6 +1,6 @@
-package com.ruslooob.Settings;
+package com.ruslooob.LeftBar;
 
-import javafx.geometry.Insets;
+import com.ruslooob.FontFamily;
 import javafx.scene.Parent;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -26,13 +26,13 @@ public class SettingsView {
                     @Override
                     protected void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);
-
                         if (empty || item == null) {
                             setText(null);
                             setGraphic(null);
                         } else {
                             setText(item);
-                            setFont(Font.font("Helvetica", FontWeight.MEDIUM, 15));
+                            Font font = Font.font(FontFamily.COMIC_SANS_MS, FontWeight.NORMAL,  15);
+                            setFont(font);
                         }
                     }
                 };

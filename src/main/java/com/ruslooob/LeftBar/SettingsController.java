@@ -1,4 +1,4 @@
-package com.ruslooob.Settings;
+package com.ruslooob.LeftBar;
 
 public class SettingsController {
 
