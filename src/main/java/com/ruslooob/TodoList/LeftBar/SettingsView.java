@@ -1,4 +1,4 @@
-package com.ruslooob.LeftBar;
+package com.ruslooob.TodoList.LeftBar;
 
 import com.ruslooob.FontFamily;
 import javafx.scene.Parent;

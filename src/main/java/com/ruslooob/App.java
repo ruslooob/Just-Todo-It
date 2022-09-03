@@ -1,33 +1,28 @@
 package com.ruslooob;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationConfig;
-import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
-import com.ruslooob.LeftBar.SettingsView;
+import com.ruslooob.Database.DatabaseService;
+import com.ruslooob.TodoList.LeftBar.SettingsView;
 import com.ruslooob.TodoList.TodoList;
 import com.ruslooob.TodoList.TodoListController;
 import com.ruslooob.TodoList.TodoListView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Objects;
+import java.io.InputStream;
 
+import static com.ruslooob.Helpers.SplitPaneHelper.splitPane;
+import static com.ruslooob.Helpers.StageHelpers.stage;
 import static javafx.scene.control.Alert.AlertType.CONFIRMATION;
 
 public class App extends Application {
-    Path path = Paths.get("todos.txt");
+    DatabaseService databaseService = new DatabaseService();
     TodoListController controller;
 
     public static void main(String[] args) {
@@ -36,48 +31,58 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        File file = new File("todos.txt");
-        boolean newFile = file.createNewFile();
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JSR310Module());
-        objectMapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
-        TodoList todoList = new TodoList();
-        /*fixme bug with firs launch with empty file*/
-        if (!newFile) {
-            todoList = objectMapper.readValue(file, TodoList.class);
-        }
-        TodoListView view = new TodoListView();
-        controller = new TodoListController(view, todoList);
+        TodoList todoList = databaseService.loadInitStateFromFile();
+        TodoListView todoListView = new TodoListView();
+        controller = new TodoListController(todoListView, todoList);
         SettingsView settings = new SettingsView();
-        SplitPane splitPane = new SplitPane(settings.get(), view.get());
-        splitPane.setDividerPosition(0, 0.25);
-        SplitPane.setResizableWithParent(settings.get(), false);
-        primaryStage.setTitle("Just Todo It");
-        primaryStage.setScene(new Scene(splitPane, 1000, 570));
-        Image ico = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/app-icon.png")));
-        primaryStage.getIcons().add(ico);
-        primaryStage.setOnCloseRequest(event -> {
-            Alert alert = new Alert(CONFIRMATION, "Вы действительно хотите выйти?");
-            alert.showAndWait();
-            if (alert.getResult() == ButtonType.CANCEL) {
-                event.consume();
-            }
-        });
-        primaryStage.show();
+        stage(primaryStage)
+                .title("Just Todo It")
+                .scene(
+                        new Scene(
+                                splitPane()
+                                        .dividerPosition(0, 0.25)
+                                        .items(settings.get(), todoListView.get())
+                                        .resizableWithParent(settings.get(), false)
+                                        .build(),
+                                1000,
+                                570
+                        )
+                )
+                .icon(new Image(getResourceAsStream("/img/app-icon.png")))
+                .onCloseRequest(this::primaryStageOncloseRequestOnAction)
+                .build()
+                .show();
+    }
+
+    @SuppressWarnings("all")
+    private InputStream getResourceAsStream(String path) {
+        return getClass().getResourceAsStream(path);
+    }
+
+    private void primaryStageOncloseRequestOnAction(WindowEvent event) {
+        //todo write alert builder
+        Alert alert = new Alert(
+                CONFIRMATION,
+                "Вы действительно хотите выйти?",
+                new ButtonType("Да", ButtonBar.ButtonData.OK_DONE),
+                new ButtonType("Нет", ButtonBar.ButtonData.CANCEL_CLOSE)
+        );
+        alert.setTitle("Выход");
+        alert.setHeaderText("Предупреждение");
+        alert.showAndWait()
+             .ifPresent(response -> alertReceiveResponseOnAction(response, event));
+    }
+
+    private void alertReceiveResponseOnAction(ButtonType response, WindowEvent event) {
+        if (response.getButtonData() != ButtonBar.ButtonData.OK_DONE) {
+            event.consume();
+        }
     }
 
     @Override
-    public void stop() {
+    public void stop() throws IOException {
         TodoList list = controller.getTodoList();
-        ObjectMapper mapper = new ObjectMapper();
-        // fixme deprecated class usage
-        mapper.registerModule(new JSR310Module());
-        try {
-            String json = mapper.writeValueAsString(list);
-            Files.writeString(path, json);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        databaseService.storeStateToFile(list);
     }
 
 }

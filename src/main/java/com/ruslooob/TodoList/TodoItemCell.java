@@ -1,14 +1,8 @@
 package com.ruslooob.TodoList;
 
-import com.ruslooob.Commands.EditTodoItemCommand;
-import com.ruslooob.EditTodoItem.EditTodoItemController;
-import com.ruslooob.EditTodoItem.EditTodoItemView;
 import com.ruslooob.TodoItem;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 import java.time.format.DateTimeFormatter;
 

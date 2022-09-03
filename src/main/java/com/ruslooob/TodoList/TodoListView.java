@@ -1,5 +1,7 @@
 package com.ruslooob.TodoList;
 
+import com.ruslooob.Controls.IconButton;
+import com.ruslooob.FontFamily;
 import com.ruslooob.TodoItem;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -10,19 +12,25 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import org.kordamp.ikonli.fontawesome.FontAwesome;
 import org.kordamp.ikonli.javafx.FontIcon;
+
+import static com.ruslooob.Helpers.BackgroundFillHelper.backgroundFill;
+import static com.ruslooob.Helpers.BorderStrokeHelper.borderStroke;
 
 public class TodoListView {
 
     private final Parent view;
+    // todo make builder for GridPane
     GridPane container = new GridPane();
     Label header = new Label();
     //todo disable buttons if not select todos
     //todo move buttons to another class, which will be called ActionButtons. This class will be encapsulate all buttons logic
-    Button addButton = new Button("", new FontIcon(FontAwesome.PLUS));
-    Button editButton = new Button("", new FontIcon(FontAwesome.PENCIL));
-    Button deleteButton = new Button("", new FontIcon(FontAwesome.TRASH));
+    Button addButton = new IconButton(new FontIcon(FontAwesome.PLUS));
+    Button editButton = new IconButton(new FontIcon(FontAwesome.PENCIL));
+    Button deleteButton = new IconButton(new FontIcon(FontAwesome.TRASH));
     HBox actionButtons = new HBox(10, addButton, editButton, deleteButton);
 
     ListView<TodoItem> listItems = new ListView<>();
@@ -36,7 +44,7 @@ public class TodoListView {
         actionButtons.setPrefWidth(Double.MIN_VALUE);
         actionButtons.setMaxWidth(100);
         container.setPadding(new Insets(30));
-        container.setBackground(new Background(new BackgroundFill(Color.web("#ddedfa"), CornerRadii.EMPTY, null)));
+        container.setBackground(new Background(backgroundFill(Color.web("#ddedfa"))));
 
         GridPane.setConstraints(header, 0, 0);
         GridPane.setConstraints(actionButtons, 0, 1);
@@ -51,6 +59,9 @@ public class TodoListView {
 
     private Label createHeader() {
         header.setText("Все заметки");
+        Font font = Font.font(FontFamily.COMIC_SANS_MS, FontWeight.BOLD, 20);
+        header.setFont(font);
+        header.setTextFill(Color.web("#2980B9"));
         return header;
     }
 
@@ -62,8 +73,8 @@ public class TodoListView {
     private ListView<TodoItem> createListItems() {
         listItems.setCellFactory(param -> new TodoItemCell());
         listItems.prefWidthProperty().bind(container.widthProperty());
-        listItems.setBackground(new Background(new BackgroundFill(Color.web("#ddedfa"), null, null)));
-        listItems.setBorder(new Border(new BorderStroke(null, BorderStrokeStyle.NONE, new CornerRadii(10), null)));
+        listItems.setBackground(new Background(backgroundFill(Color.web("#ddedfa"))));
+        listItems.setBorder(new Border(borderStroke(BorderStrokeStyle.NONE, new CornerRadii(10))));
         return listItems;
     }
 

@@ -1,7 +1,6 @@
 package com.ruslooob.EditTodoItem;
 
 import com.ruslooob.Commands.Command;
-import com.ruslooob.Commands.EditTodoItemCommand;
 import com.ruslooob.TodoItem;
 import javafx.scene.Node;
 import javafx.stage.Stage;
@@ -11,7 +10,6 @@ public class EditTodoItemController {
     private final Command editTodoItemCommand;
     private final TodoItem todoItem;
 
-    // fixme убрать логику из конструктора и перенести ее в public-метод start
     public EditTodoItemController(EditTodoItemView view, TodoItem todoItem, Command editTodoItemCommand) {
         this.view = view;
         this.todoItem = todoItem;

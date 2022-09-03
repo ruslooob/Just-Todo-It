@@ -3,7 +3,7 @@ package com.ruslooob.Commands;
 import com.ruslooob.TodoItem;
 import javafx.collections.ObservableList;
 
-public class DeleteTodoItemCommand {
+public class DeleteTodoItemCommand implements Command {
 
     private final ObservableList<TodoItem> todoItems;
     private final TodoItem itemForRemove;
