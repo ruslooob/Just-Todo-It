@@ -9,6 +9,7 @@ import com.ruslooob.CreateTodoItem.CreateTodoItemView;
 import com.ruslooob.EditTodoItem.EditTodoItemController;
 import com.ruslooob.EditTodoItem.EditTodoItemView;
 import com.ruslooob.TodoItem;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -41,6 +42,8 @@ public class TodoListController {
                 showEditTodoItemDialog();
             }
         });
+        view.editButton.disableProperty().bind(Bindings.isEmpty(view.listItems.getSelectionModel().getSelectedItems()));
+        view.deleteButton.disableProperty().bind(Bindings.isEmpty(view.listItems.getSelectionModel().getSelectedItems()));
         view.addButton.setOnAction(this::addButtonOnAction);
         view.editButton.setOnAction(this::editButtonOnAction);
         view.deleteButton.setOnAction(this::deleteButtonOnAction);

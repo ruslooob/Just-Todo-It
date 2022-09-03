@@ -1,6 +1,7 @@
 package com.ruslooob.TodoList;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -13,14 +14,14 @@ import static com.ruslooob.Helpers.BorderStrokeHelper.borderStroke;
 import static com.ruslooob.Helpers.HBoxHelpers.hbox;
 import static com.ruslooob.Helpers.VBoxHelper.vbox;
 
-public class TodoItemView {
+public class TodoItemCellView {
 
     private final Parent view;
     Label header = new Label("");
     Label content = new Label("");
     Label createDate = new Label("");
 
-    public TodoItemView() {
+    public TodoItemCellView() {
         view = create();
     }
 
@@ -29,13 +30,9 @@ public class TodoItemView {
         HBox container = hbox()
                 .maxWidth(671.)
                 .background(
-                        new Background(
-                                backgroundFill(Color.web("#ffffff", 0.5))
-                        )
+                        new Background(backgroundFill(Color.web("#ffffff", 0.5)))
                 ).border(
-                        new Border(
-                                borderStroke(new CornerRadii(10))
-                        )
+                        new Border(borderStroke(new CornerRadii(10)))
                 ).padding(new Insets(5, 10, 5, 10))
                 .spacing(50.)
                 .childrens(

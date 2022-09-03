@@ -31,6 +31,7 @@ public class TodoListView {
     Button addButton = new IconButton(new FontIcon(FontAwesome.PLUS));
     Button editButton = new IconButton(new FontIcon(FontAwesome.PENCIL));
     Button deleteButton = new IconButton(new FontIcon(FontAwesome.TRASH));
+    /*carry out action buttons to another view*/
     HBox actionButtons = new HBox(10, addButton, editButton, deleteButton);
 
     ListView<TodoItem> listItems = new ListView<>();
@@ -41,8 +42,9 @@ public class TodoListView {
     }
 
     private Parent create() {
-        actionButtons.setPrefWidth(Double.MIN_VALUE);
-        actionButtons.setMaxWidth(100);
+        addButton.setPrefSize(30, 25);
+        editButton.setPrefSize(30, 25);
+        deleteButton.setPrefSize(30, 25);
         container.setPadding(new Insets(30));
         container.setBackground(new Background(backgroundFill(Color.web("#ddedfa"))));
 

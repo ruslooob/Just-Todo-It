@@ -7,7 +7,7 @@ public class BackgroundFillHelper {
 
     public static BackgroundFill backgroundFill(Color color) {
         return new BackgroundFill(
-                Color.web("#ffffff", 0.5),
+                color,
                 null,
                 null
         );
