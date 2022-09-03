@@ -59,8 +59,6 @@ public class TodoListController {
         );
         stage()
                 .title($("create_todo_window_title"))
-                .owner(view.get().getScene().getWindow())
-                .modality(Modality.WINDOW_MODAL)
                 .scene(new Scene(createTodoItemView.get()))
                 .build()
                 .show();
@@ -83,8 +81,6 @@ public class TodoListController {
         Stage stage = new Stage();
         stage()
                 .title($("edit_todo_window_title"))
-                .owner(view.get().getScene().getWindow())
-                .modality(Modality.WINDOW_MODAL)
                 .scene(new Scene(editTodoItemView.get()))
                 .build()
                 .show();

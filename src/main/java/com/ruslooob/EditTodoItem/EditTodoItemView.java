@@ -3,7 +3,7 @@ package com.ruslooob.EditTodoItem;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -13,8 +13,8 @@ import static com.ruslooob.LangLoader.$;
 
 public class EditTodoItemView {
     private final Parent view;
-    TextField header = new TextField("");
-    TextField content = new TextField("");
+    TextField header;
+    TextArea content;
     Button saveButton = new Button($("edit_todo_save_button_text"));
 
     public EditTodoItemView() {
@@ -23,13 +23,31 @@ public class EditTodoItemView {
 
     private Parent create() {
         VBox container = vbox(
-                15,
-                new HBox(10, new Label($("edit_todo_edit_button_text")), header),
-                new HBox(10, new Label($("edit_todo_delete_button_text")), content),
+                10,
+                new HBox(getHeader()),
+                new HBox(getContent()),
                 saveButton
         );
-        container.setPadding(new Insets(20));
+        container.setPadding(new Insets(10));
         return container;
+    }
+
+    private TextField getHeader() {
+        if (header == null) {
+            header = new TextField("");
+            header.setPrefWidth(250);
+        }
+        return header;
+    }
+
+    private TextArea getContent() {
+        if (content == null) {
+            content = new TextArea("");
+            content.setPrefWidth(250);
+            content.setPrefHeight(100);
+            content.setWrapText(true);
+        }
+        return content;
     }
 
     public Parent get() {
