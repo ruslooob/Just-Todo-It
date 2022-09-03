@@ -25,7 +25,7 @@ public class DatabaseService {
         TodoList todoList = new TodoList();
         /*fixme bug with firs launch with empty file*/
         if (!fileWasCreated) {
-            //            todoList = objectMapper.readValue(file, TodoList.class);
+            todoList = objectMapper.readValue(file, TodoList.class);
         }
         return todoList;
     }

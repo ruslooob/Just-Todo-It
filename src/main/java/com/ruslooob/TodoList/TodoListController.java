@@ -15,11 +15,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import static com.ruslooob.Helpers.StageHelpers.stage;
+import static com.ruslooob.LangLoader.$;
 import static javafx.scene.control.Alert.AlertType.CONFIRMATION;
 
 public class TodoListController {
@@ -36,7 +36,6 @@ public class TodoListController {
 
     private void setView(TodoListView view) {
         view.listItems.setItems(todoList.getTodoItems());
-        view.listItems.setPlaceholder(new Label("Create you first todo!"));
         view.listItems.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
                 showEditTodoItemDialog();
@@ -59,7 +58,7 @@ public class TodoListController {
                 command
         );
         stage()
-                .title("Create Todo")
+                .title($("create_todo_window_title"))
                 .owner(view.get().getScene().getWindow())
                 .modality(Modality.WINDOW_MODAL)
                 .scene(new Scene(createTodoItemView.get()))
@@ -83,7 +82,7 @@ public class TodoListController {
         controller.start();
         Stage stage = new Stage();
         stage()
-                .title("Edit Todo")
+                .title($("edit_todo_window_title"))
                 .owner(view.get().getScene().getWindow())
                 .modality(Modality.WINDOW_MODAL)
                 .scene(new Scene(editTodoItemView.get()))
@@ -95,12 +94,12 @@ public class TodoListController {
         /*todo alert builder*/
         Alert alert = new Alert(
                 CONFIRMATION,
-                "Вы действительно хотите удалить заметку?",
-                new ButtonType("Да", ButtonBar.ButtonData.OK_DONE),
-                new ButtonType("Нет", ButtonBar.ButtonData.CANCEL_CLOSE)
+                $("delete_todo_confirmation_alert_content"),
+                new ButtonType($("yes"), ButtonBar.ButtonData.OK_DONE),
+                new ButtonType($("no"), ButtonBar.ButtonData.CANCEL_CLOSE)
         );
-        alert.setTitle("Удаление заметки");
-        alert.setHeaderText("Предупреждение");
+        alert.setTitle($("delete_todo_confirmation_alert_title"));
+        alert.setHeaderText($("delete_todo_confirmation_alert_header"));
         alert.showAndWait().ifPresent(response -> {
             if (response.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
                 Command deleteTodoItemCommand = new DeleteTodoItemCommand(

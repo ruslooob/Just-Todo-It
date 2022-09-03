@@ -12,8 +12,8 @@ import java.util.Objects;
 public class TodoItem {
     // todo что делать с id
     private Long id;
-    private StringProperty header = new SimpleStringProperty("");
-    private StringProperty content = new SimpleStringProperty("");
+    private final StringProperty header = new SimpleStringProperty("");
+    private final StringProperty content = new SimpleStringProperty("");
     private final SimpleObjectProperty<LocalDate> createDate = new SimpleObjectProperty<>(LocalDate.of(2022, Month.APRIL, 10));
 
     public TodoItem(String header, String content) {

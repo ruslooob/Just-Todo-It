@@ -8,6 +8,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.util.Callback;
 
+import static com.ruslooob.LangLoader.$;
 import static javafx.collections.FXCollections.observableArrayList;
 
 public class SettingsView {
@@ -18,7 +19,14 @@ public class SettingsView {
     }
 
     private Parent createView() {
-        ListView<String> settings = new ListView<>(observableArrayList("Избранные", "Корзина", "Настройки", "О программе"));
+        ListView<String> settings = new ListView<>(
+                observableArrayList(
+                        $("settings_favorites_option_text"),
+                        $("settings_thrash_option_text"),
+                        $("settings_preferences_option_text"),
+                        $("settings_about_option_text")
+                )
+        );
         settings.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
             @Override
             public ListCell<String> call(ListView<String> param) {

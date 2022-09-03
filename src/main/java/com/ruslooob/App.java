@@ -19,6 +19,7 @@ import java.io.InputStream;
 
 import static com.ruslooob.Helpers.SplitPaneHelper.splitPane;
 import static com.ruslooob.Helpers.StageHelpers.stage;
+import static com.ruslooob.LangLoader.$;
 import static javafx.scene.control.Alert.AlertType.CONFIRMATION;
 
 public class App extends Application {
@@ -36,7 +37,7 @@ public class App extends Application {
         controller = new TodoListController(todoListView, todoList);
         SettingsView settings = new SettingsView();
         stage(primaryStage)
-                .title("Just Todo It")
+                .title($("main_window_title"))
                 .scene(
                         new Scene(
                                 splitPane()
@@ -63,12 +64,12 @@ public class App extends Application {
         //todo write alert builder
         Alert alert = new Alert(
                 CONFIRMATION,
-                "Вы действительно хотите выйти?",
-                new ButtonType("Да", ButtonBar.ButtonData.OK_DONE),
-                new ButtonType("Нет", ButtonBar.ButtonData.CANCEL_CLOSE)
+                $("main_window_exit_confirmation_content"),
+                new ButtonType($("yes"), ButtonBar.ButtonData.OK_DONE),
+                new ButtonType($("no"), ButtonBar.ButtonData.CANCEL_CLOSE)
         );
-        alert.setTitle("Выход");
-        alert.setHeaderText("Предупреждение");
+        alert.setTitle($("main_window_exit_confirmation_title"));
+        alert.setHeaderText($("main_window_exit_confirmation_header"));
         alert.showAndWait()
              .ifPresent(response -> alertReceiveResponseOnAction(response, event));
     }

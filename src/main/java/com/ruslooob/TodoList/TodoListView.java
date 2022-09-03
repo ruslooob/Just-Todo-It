@@ -19,9 +19,9 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 import static com.ruslooob.Helpers.BackgroundFillHelper.backgroundFill;
 import static com.ruslooob.Helpers.BorderStrokeHelper.borderStroke;
+import static com.ruslooob.LangLoader.$;
 
 public class TodoListView {
-
     private final Parent view;
     // todo make builder for GridPane
     GridPane container = new GridPane();
@@ -73,6 +73,7 @@ public class TodoListView {
 
 
     private ListView<TodoItem> createListItems() {
+        listItems.setPlaceholder(new Label($("empty_todo_list_text")));
         listItems.setCellFactory(param -> new TodoItemCell());
         listItems.prefWidthProperty().bind(container.widthProperty());
         listItems.setBackground(new Background(backgroundFill(Color.web("#ddedfa"))));
