@@ -9,16 +9,14 @@ import com.ruslooob.CreateTodoItem.CreateTodoItemView;
 import com.ruslooob.EditTodoItem.EditTodoItemController;
 import com.ruslooob.EditTodoItem.EditTodoItemView;
 import com.ruslooob.TodoItem;
+import com.ruslooob.TodoStage;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import static com.ruslooob.Helpers.StageHelpers.stage;
 import static com.ruslooob.LangLoader.$;
 import static javafx.scene.control.Alert.AlertType.CONFIRMATION;
 
@@ -57,11 +55,9 @@ public class TodoListController {
                 todoItem,
                 command
         );
-        stage()
-                .title($("create_todo_window_title"))
-                .scene(new Scene(createTodoItemView.get()))
-                .build()
-                .show();
+        Stage stage = new TodoStage(createTodoItemView.get());
+        stage.setTitle($("create_todo_window_title"));
+        stage.show();
     }
 
     private void editButtonOnAction(ActionEvent event) {
@@ -78,12 +74,9 @@ public class TodoListController {
                 command
         );
         controller.start();
-        Stage stage = new Stage();
-        stage()
-                .title($("edit_todo_window_title"))
-                .scene(new Scene(editTodoItemView.get()))
-                .build()
-                .show();
+        Stage stage = new TodoStage(editTodoItemView.get());
+        stage.setTitle($("edit_todo_window_title"));
+        stage.show();
     }
 
     private void deleteButtonOnAction(ActionEvent event) {

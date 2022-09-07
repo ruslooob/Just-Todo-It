@@ -13,7 +13,7 @@ repositories {
 }
 
 ext {
-    junitVersion = '5.7.1'
+    junitVersion = '5.9.0'
 }
 
 sourceCompatibility = '17'
@@ -23,25 +23,31 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
+mainClassName = 'com.ruslooob.App'
+
 application {
     mainModule = 'com.ruslooob'
-    mainClass = 'com.ruslooob.Application'
+    mainClass = 'com.ruslooob.App'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class' : 'com.ruslooob.App'
+        )
+    }
 }
 
 javafx {
     version = '17.0.0.1'
     modules = ['javafx.controls']
 }
+
 /*
 simple exe - jpackage --type exe --input . --dest . --main-jar '.\Just Todo It-1.0-SNAPSHOT.jar' --main-class com.ruslooob.App --module-path "C:\Users\Ruslan\javafx-jmods-18.0.2" --add-modules javafx.controls --win-shortcut --win-menu
 exe with inner packed virtual machine jpackage --type exe --input . --dest . --main-jar '.\Just Todo It-1.0-SNAPSHOT.jar' --main-class com.ruslooob.App --module-path "C:\Users\Ruslan\javafx-jmods-18.0.2" --add-modules javafx.controls --win-shortcut --win-menu --name "Just Todo It" --jlink-options --bind-services
 todo fix problem process exited with code 1
 */
-jlink {
-    launcher {
-        name = 'hellofx'
-    }
-}
 
 dependencies {
     implementation(group: 'org.kordamp.ikonli', name: 'ikonli-core', version: '12.3.1')
@@ -50,6 +56,10 @@ dependencies {
 
     implementation(group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.3')
     implementation(group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.13.3')
+
+    implementation group: 'org.jetbrains', name: 'annotations', version: '23.0.0'
+
+
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")

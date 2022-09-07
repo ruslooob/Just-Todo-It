@@ -1,9 +1,10 @@
 package com.ruslooob.TodoList;
 
+import com.ruslooob.Controls.IconButton;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.OverrunStyle;
 import javafx.scene.layout.*;
@@ -20,6 +21,7 @@ public class TodoItemCellView {
     Label header = new Label("");
     Label content = new Label("");
     Label createDate = new Label("");
+    Button favoriteButton = new IconButton();
 
     public TodoItemCellView() {
         view = create();
@@ -34,11 +36,12 @@ public class TodoItemCellView {
                 ).border(
                         new Border(borderStroke(new CornerRadii(10)))
                 ).padding(new Insets(5, 10, 5, 10))
-                .spacing(50.)
+                .spacing(20)
                 .childrens(
                         headerWithContent,
                         getSeparator(),
-                        createDate
+                        createDate,
+                        favoriteButton
                 ).build();
         content.setTextOverrun(OverrunStyle.ELLIPSIS);
         createDate.setMinWidth(80);

@@ -15,6 +15,7 @@ public class TodoItem {
     private final StringProperty header = new SimpleStringProperty("");
     private final StringProperty content = new SimpleStringProperty("");
     private final SimpleObjectProperty<LocalDate> createDate = new SimpleObjectProperty<>(LocalDate.of(2022, Month.APRIL, 10));
+    private boolean isFavorite = false;
 
     public TodoItem(String header, String content) {
         setHeader(header);
@@ -76,6 +77,18 @@ public class TodoItem {
 
     public void setCreateDate(LocalDate createDate) {
         this.createDate.set(createDate);
+    }
+
+    public SimpleObjectProperty<LocalDate> createDateProperty() {
+        return createDate;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
     }
 
 }

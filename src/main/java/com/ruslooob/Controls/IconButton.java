@@ -9,4 +9,8 @@ public class IconButton extends Button {
         super("", graphic);
     }
 
+    public IconButton() {
+        super();
+    }
+
 }

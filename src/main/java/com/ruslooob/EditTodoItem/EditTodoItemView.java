@@ -1,18 +1,18 @@
 package com.ruslooob.EditTodoItem;
 
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 import static com.ruslooob.Helpers.VBoxHelper.vbox;
 import static com.ruslooob.LangLoader.$;
 
 public class EditTodoItemView {
-    private final Parent view;
+    private final Region view;
     TextField header;
     TextArea content;
     Button saveButton = new Button($("edit_todo_save_button_text"));
@@ -21,7 +21,7 @@ public class EditTodoItemView {
         this.view = create();
     }
 
-    private Parent create() {
+    private Region create() {
         VBox container = vbox(
                 10,
                 new HBox(getHeader()),
@@ -50,7 +50,7 @@ public class EditTodoItemView {
         return content;
     }
 
-    public Parent get() {
+    public Region get() {
         return view;
     }
 }

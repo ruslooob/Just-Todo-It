@@ -1,5 +1,4 @@
-// delete common open
-open module com.ruslooob {
+module com.ruslooob {
     requires javafx.controls;
     requires java.desktop;
     requires org.kordamp.ikonli.core;
@@ -9,6 +8,9 @@ open module com.ruslooob {
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.annotation;
     requires com.fasterxml.jackson.datatype.jsr310;
+    requires org.jetbrains.annotations;
+
+    opens com.ruslooob.TodoList;
 
     exports com.ruslooob;
 }
