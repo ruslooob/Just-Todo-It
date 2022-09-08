@@ -10,8 +10,9 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.jetbrains.annotations.NotNull;
-import org.kordamp.ikonli.fontawesome.FontAwesome;
 import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignR;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignW;
 
 
 public class TodoStage extends Stage {
@@ -51,8 +52,10 @@ public class TodoStage extends Stage {
 
     private Button getExitButton() {
         if (exitButton == null) {
-            exitButton = new Button("", new FontIcon(FontAwesome.TIMES));
+            exitButton = new Button("", new FontIcon(MaterialDesignW.WINDOW_CLOSE));
             exitButton.setPadding(buttonInsets);
+            exitButton.setBackground(null);
+            exitButton.setBorder(null);
             exitButton.setOnAction(event -> {
                 this.close();
             });
@@ -62,9 +65,10 @@ public class TodoStage extends Stage {
 
     private Button getRestoreButton() {
         if (restoreButton == null) {
-            restoreButton = new Button("", new FontIcon(FontAwesome.WINDOW_MAXIMIZE));
+            restoreButton = new Button("", new FontIcon(MaterialDesignR.RECTANGLE_OUTLINE));
             restoreButton.setPadding(buttonInsets);
-
+            restoreButton.setBackground(null);
+            restoreButton.setBorder(null);
             restoreButton.setOnAction(event -> {
                 content.setVisible(!content.isVisible());
                 content.setManaged(!content.isManaged());

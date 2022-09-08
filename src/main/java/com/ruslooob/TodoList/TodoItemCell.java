@@ -7,8 +7,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
-import org.kordamp.ikonli.fontawesome.FontAwesome;
 import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignS;
 
 import java.time.format.DateTimeFormatter;
 
@@ -30,15 +30,15 @@ public class TodoItemCell extends ListCell<TodoItem> {
             view.content.setText(item.getContent());
             view.content.setFont(new Font(FontFamily.TIMES_NEW_ROMAN, 16));
             view.createDate.setText(item.getCreateDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
-            view.createDate.setFont(Font.font(FontFamily.TIMES_NEW_ROMAN, FontWeight.MEDIUM,15));
+            view.createDate.setFont(Font.font(FontFamily.TIMES_NEW_ROMAN, FontWeight.MEDIUM, 15));
             view.favoriteButton.setGraphic(item.isFavorite()
-                    ? new FontIcon(FontAwesome.STAR)
-                    : new FontIcon(FontAwesome.STAR_O));
+                    ? new FontIcon(MaterialDesignS.STAR)
+                    : new FontIcon(MaterialDesignS.STAR_OUTLINE));
             view.favoriteButton.setOnAction(event -> {
                 item.setFavorite(!item.isFavorite());
                 view.favoriteButton.setGraphic(item.isFavorite()
-                        ? new FontIcon(FontAwesome.STAR)
-                        : new FontIcon(FontAwesome.STAR_O));
+                        ? new FontIcon(MaterialDesignS.STAR)
+                        : new FontIcon(MaterialDesignS.STAR_OUTLINE));
             });
             setPadding(new Insets(0));
             setGraphic(view.get());

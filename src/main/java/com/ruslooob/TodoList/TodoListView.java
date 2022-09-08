@@ -14,23 +14,25 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import org.kordamp.ikonli.fontawesome.FontAwesome;
 import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignP;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignT;
 
 import static com.ruslooob.Helpers.BackgroundFillHelper.backgroundFill;
 import static com.ruslooob.Helpers.BorderStrokeHelper.borderStroke;
 import static com.ruslooob.LangLoader.$;
 
 public class TodoListView {
+
     private final Parent view;
     // todo make builder for GridPane
     GridPane container = new GridPane();
     Label header = new Label();
     //todo disable buttons if not select todos
     //todo move buttons to another class, which will be called ActionButtons. This class will be encapsulate all buttons logic
-    Button addButton = new IconButton(new FontIcon(FontAwesome.PLUS));
-    Button editButton = new IconButton(new FontIcon(FontAwesome.PENCIL));
-    Button deleteButton = new IconButton(new FontIcon(FontAwesome.TRASH));
+    Button addButton = new IconButton(new FontIcon(MaterialDesignP.PLUS_THICK));
+    Button editButton = new IconButton(new FontIcon(MaterialDesignP.PENCIL));
+    Button deleteButton = new IconButton(new FontIcon(MaterialDesignT.TRASH_CAN));
     /*carry out action buttons to another view*/
     HBox actionButtons = new HBox(10, addButton, editButton, deleteButton);
 
@@ -43,8 +45,11 @@ public class TodoListView {
 
     private Parent create() {
         addButton.setPrefSize(30, 25);
+        addButton.setFont(Font.font(14));
         editButton.setPrefSize(30, 25);
+        editButton.setFont(Font.font(14));
         deleteButton.setPrefSize(30, 25);
+        deleteButton.setFont(Font.font(14));
         container.setPadding(new Insets(30));
         container.setBackground(new Background(backgroundFill(Color.web("#ddedfa"))));
 

@@ -1,14 +1,14 @@
-package com.ruslooob.Settings;
+package com.ruslooob.SideBar;
 
 import com.ruslooob.TodoItem;
 import com.ruslooob.TodoList.TodoList;
 
-public class SettingsController {
+public class SidebarController {
 
-    SettingsView view;
+    SidebarView view;
     TodoList todoList;
 
-    public SettingsController(SettingsView view, TodoList todoList) {
+    public SidebarController(SidebarView view, TodoList todoList) {
         this.view = view;
         bindModel();
         TodoList todoList1 = new TodoList();

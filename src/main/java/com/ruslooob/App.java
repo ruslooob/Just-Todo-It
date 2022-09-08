@@ -1,8 +1,8 @@
 package com.ruslooob;
 
 import com.ruslooob.Database.DatabaseService;
-import com.ruslooob.Settings.SettingsController;
-import com.ruslooob.Settings.SettingsView;
+import com.ruslooob.SideBar.SidebarController;
+import com.ruslooob.SideBar.SidebarView;
 import com.ruslooob.TodoList.TodoList;
 import com.ruslooob.TodoList.TodoListController;
 import com.ruslooob.TodoList.TodoListView;
@@ -41,8 +41,8 @@ public class App extends Application {
         TodoList todoList = databaseService.loadInitStateFromFile();
         TodoListView todoListView = new TodoListView();
         controller = new TodoListController(todoListView, todoList);
-        SettingsView settingsView = new SettingsView();
-        SettingsController settingsController = new SettingsController(settingsView, todoList);
+        SidebarView sidebarView = new SidebarView();
+        SidebarController sidebarController = new SidebarController(sidebarView, todoList);
 
 
         this.primaryStage =
@@ -52,8 +52,8 @@ public class App extends Application {
                                 new Scene(
                                         splitPane()
                                                 .dividerPosition(0, 0.25)
-                                                .items(settingsView.get(), todoListView.get())
-                                                .resizableWithParent(settingsView.get(), false)
+                                                .items(sidebarView.get(), todoListView.get())
+                                                .resizableWithParent(sidebarView.get(), false)
                                                 .build(),
                                         1000,
                                         570

@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.OverrunStyle;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 import static com.ruslooob.Helpers.BackgroundFillHelper.backgroundFill;
 import static com.ruslooob.Helpers.BorderStrokeHelper.borderStroke;
@@ -29,6 +30,9 @@ public class TodoItemCellView {
 
     private Parent create() {
         VBox headerWithContent = vbox(10, header, content);
+        favoriteButton.setFont(Font.font(14));
+        favoriteButton.setBorder(null);
+        favoriteButton.setBackground(null);
         HBox container = hbox()
                 .maxWidth(671.)
                 .background(
