@@ -3,14 +3,14 @@ package com.ruslooob.TodoList;
 import com.ruslooob.Controls.IconButton;
 import com.ruslooob.FontFamily;
 import com.ruslooob.TodoItem;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -18,8 +18,6 @@ import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignP;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignT;
 
-import static com.ruslooob.Helpers.BackgroundFillHelper.backgroundFill;
-import static com.ruslooob.Helpers.BorderStrokeHelper.borderStroke;
 import static com.ruslooob.LangLoader.$;
 
 public class TodoListView {
@@ -41,22 +39,18 @@ public class TodoListView {
 
     public TodoListView() {
         this.view = create();
+        view.getStylesheets().add("/css/todo-list.css");
     }
 
     private Parent create() {
-        addButton.setPrefSize(30, 25);
-        addButton.setFont(Font.font(14));
-        editButton.setPrefSize(30, 25);
-        editButton.setFont(Font.font(14));
-        deleteButton.setPrefSize(30, 25);
-        deleteButton.setFont(Font.font(14));
-        container.setPadding(new Insets(30));
-        container.setBackground(new Background(backgroundFill(Color.web("#ddedfa"))));
+        addButton.getStyleClass().addAll("button");
+        editButton.getStyleClass().add("button");
+        deleteButton.getStyleClass().add("button");
 
+        container.getStyleClass().add("container");
         GridPane.setConstraints(header, 0, 0);
         GridPane.setConstraints(actionButtons, 0, 1);
         GridPane.setConstraints(listItems, 0, 2);
-        container.setVgap(20);
         container.getChildren().addAll(createHeader(), createToolBar(), createListItems());
         ScrollPane scrollPane = new ScrollPane(container);
         scrollPane.setFitToWidth(true);
@@ -64,7 +58,7 @@ public class TodoListView {
         return scrollPane;
     }
 
-    private Label createHeader() {
+    Label createHeader() {
         header.setText("Все заметки");
         Font font = Font.font(FontFamily.COMIC_SANS_MS, FontWeight.BOLD, 20);
         header.setFont(font);
@@ -72,17 +66,17 @@ public class TodoListView {
         return header;
     }
 
-    private Node createToolBar() {
+    Node createToolBar() {
         return actionButtons;
     }
 
 
-    private ListView<TodoItem> createListItems() {
+    ListView<TodoItem> createListItems() {
         listItems.setPlaceholder(new Label($("empty_todo_list_text")));
         listItems.setCellFactory(param -> new TodoItemCell());
+        /*fix this hardcode*/
         listItems.prefWidthProperty().bind(container.widthProperty());
-        listItems.setBackground(new Background(backgroundFill(Color.web("#ddedfa"))));
-        listItems.setBorder(new Border(borderStroke(BorderStrokeStyle.NONE, new CornerRadii(10))));
+        listItems.getStylesheets().add("list-items");
         return listItems;
     }
 

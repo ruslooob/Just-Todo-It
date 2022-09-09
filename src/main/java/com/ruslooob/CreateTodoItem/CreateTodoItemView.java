@@ -2,13 +2,11 @@ package com.ruslooob.CreateTodoItem;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-import static com.ruslooob.Helpers.HBoxHelpers.hbox;
 import static com.ruslooob.Helpers.VBoxHelper.vbox;
 import static com.ruslooob.LangLoader.$;
 

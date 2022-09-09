@@ -1,15 +1,11 @@
 package com.ruslooob.TodoList;
 
-import com.ruslooob.Controls.IconButton;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.OverrunStyle;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignS;
 
@@ -21,21 +17,18 @@ import static com.ruslooob.Helpers.VBoxHelper.vbox;
 public class TodoItemCellView {
 
     private final Parent view;
-    Label header = new Label("");
-    Label content = new Label("");
-    Label createDate = new Label("");
-    Button favoriteButton = new Button("", new FontIcon(MaterialDesignS.STAR_OUTLINE));
+    private Label header;
+    private Label content;
+    private Label createDate;
+    private Button favoriteButton;
 
     public TodoItemCellView() {
         view = create();
-        view.getStylesheets().add("/css/todo-item.css");
     }
 
     private Parent create() {
-        VBox headerWithContent = vbox(10, header, content);
-        favoriteButton.getStyleClass().add("favorite-button");
+        VBox headerWithContent = vbox(10, getHeader(), getContent());
         HBox container = hbox()
-                .maxWidth(671.)
                 .background(
                         new Background(backgroundFill(Color.web("#ffffff", 0.5)))
                 ).border(
@@ -45,18 +38,50 @@ public class TodoItemCellView {
                 .childrens(
                         headerWithContent,
                         getSeparator(),
-                        createDate,
-                        favoriteButton
+                        getCreateDate(),
+                        getFavoriteButton()
                 ).build();
         content.setTextOverrun(OverrunStyle.ELLIPSIS);
-        createDate.setMinWidth(80);
         return new StackPane(container);
     }
 
+    /*todo remove separator, use borderpane or hbox alignment instead*/
     private Node getSeparator() {
         Pane separator = new Pane();
         HBox.setHgrow(separator, Priority.ALWAYS);
         return separator;
+    }
+
+    Labeled getHeader() {
+        if (header == null) {
+            header = new Label("");
+            header.getStyleClass().addAll("todo-item-header", "label");
+        }
+        return header;
+    }
+
+    Labeled getContent() {
+        if (content == null) {
+            content = new Label("");
+            content.getStyleClass().addAll("todo-item-content", "label");
+        }
+        return content;
+    }
+
+    Labeled getCreateDate() {
+        if (createDate == null) {
+            createDate = new Label("");
+            createDate.getStyleClass().addAll("todo-item-create-date", "label");
+        }
+        return createDate;
+    }
+
+    ButtonBase getFavoriteButton() {
+        if (favoriteButton == null) {
+            favoriteButton = new Button("", new FontIcon(MaterialDesignS.STAR_OUTLINE));
+            favoriteButton.getStyleClass().add("todo-item-favorite-button");
+        }
+        return favoriteButton;
     }
 
     public Parent get() {

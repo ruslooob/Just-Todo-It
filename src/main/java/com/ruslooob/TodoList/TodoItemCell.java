@@ -1,12 +1,9 @@
 package com.ruslooob.TodoList;
 
-import com.ruslooob.FontFamily;
 import com.ruslooob.TodoItem;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.ListCell;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignS;
 
@@ -24,24 +21,20 @@ public class TodoItemCell extends ListCell<TodoItem> {
         } else {
             setText(null);
             TodoItemCellView view = new TodoItemCellView();
-            view.header.setText(item.getHeader());
-            /*todo add constants for ofter use font-sizes*/
-            view.header.setFont(Font.font(FontFamily.ARIAL, FontWeight.MEDIUM, FontPosture.ITALIC, 18));
-            view.content.setText(item.getContent());
-            view.content.setFont(new Font(FontFamily.TIMES_NEW_ROMAN, 16));
-            view.createDate.setText(item.getCreateDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
-            view.createDate.setFont(Font.font(FontFamily.TIMES_NEW_ROMAN, FontWeight.MEDIUM, 15));
-            view.favoriteButton.setGraphic(item.isFavorite()
+            view.getHeader().setText(item.getHeader());
+            view.getContent().setText(item.getContent());
+            view.getCreateDate().setText(item.getCreateDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+            view.getFavoriteButton().setGraphic(item.isFavorite()
                     ? new FontIcon(MaterialDesignS.STAR)
                     : new FontIcon(MaterialDesignS.STAR_OUTLINE));
-            view.favoriteButton.setOnAction(event -> {
+            view.getFavoriteButton().setOnAction(event -> {
                 item.setFavorite(!item.isFavorite());
-                view.favoriteButton.setGraphic(item.isFavorite()
+                view.getFavoriteButton().setGraphic(item.isFavorite()
                         ? new FontIcon(MaterialDesignS.STAR)
                         : new FontIcon(MaterialDesignS.STAR_OUTLINE));
             });
-            setPadding(new Insets(0));
             setGraphic(view.get());
+            setPadding(new Insets(0));
         }
     }
 

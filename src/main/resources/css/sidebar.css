@@ -1,32 +1,35 @@
-.favorites-label {
-    -fx-font-family: "Times New Roman";
-    -fx-font-size: 18px;
-    -fx-graphic-text-gap: 10;
-    /*-fx-icon-code: "mdi2s-star-outline";*/
+.list-cell:filled:selected {
+    -fx-background-color: rgba(193, 225, 236, 0.5);
+    -fx-text-fill: black;
 }
 
-.trash-label {
+.label {
     -fx-font-family: "Times New Roman";
     -fx-font-size: 18px;
     -fx-graphic-text-gap: 10;
-    /*-fx-icon-code: "mdi2t-trash-can-outline";*/
+    -fx-label-padding: 5px 0px;
 }
 
-.trash-label {
-    -fx-font-family: "Times New Roman";
-    -fx-font-size: 18px;
-    -fx-graphic-text-gap: 10;
-    /*-fx-icon-code: "mdi2t-trash-can-outline";*/
+.label:hover {
+    -fx-background-color: rgba(229, 224, 224, 0.7);
 }
 
-.preferences-label {
-    -fx-font-family: "Times New Roman";
-    -fx-font-size: 18px;
-    -fx-graphic-text-gap: 10;
+.all-notes-label .ikonli-font-icon {
+    -fx-icon-code: "mdi2n-note-multiple-outline";
 }
 
-.about-label {
-    -fx-font-family: "Times New Roman";
-    -fx-font-size: 18px;
-    -fx-graphic-text-gap: 10;
+.favorites-label .ikonli-font-icon {
+    -fx-icon-code: "mdi2s-star-outline";
+}
+
+.trash-label .ikonli-font-icon {
+    -fx-icon-code: "mdi2t-trash-can-outline";
+}
+
+.preferences-label .ikonli-font-icon {
+    -fx-icon-code: "mdi2c-cog-outline";
+}
+
+.about-label .ikonli-font-icon {
+    -fx-icon-code: "mdi2i-information-outline";
 }

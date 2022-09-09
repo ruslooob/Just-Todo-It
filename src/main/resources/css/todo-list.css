@@ -1,0 +1,62 @@
+.button {
+    -fx-pref-width: 30px;
+    -fx-pref-height: 25px;
+    -fx-font-size: 14px;
+}
+
+.container {
+    -fx-background-color: rgba(72, 219, 251, 0.3);
+    -fx-padding: 20px;
+    -fx-vgap: 20px;
+}
+
+.list-view {
+    -fx-background-color: white;
+    -fx-border-radius: 10;
+    -fx-padding: 0;
+}
+
+.list-cell {
+    -fx-vgap: 10px;
+    -fx-background-color: transparent;
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: rgb(152, 220, 245);
+    -fx-text-fill: black;
+}
+
+
+/*todo item styles*/
+.label {
+    -fx-text-fill: black;
+}
+
+.todo-item-header {
+    -fx-font-family: Arial;
+    -fx-font-weight: 500;
+    -fx-font-style: Italic;
+    -fx-font-size: 18px;
+}
+
+.todo-item-content {
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 16px;
+}
+
+.todo-item-create-date {
+    -fx-font-family: "Times New Roman";
+    -fx-font-weight: 500;
+    -fx-font-size: 15px;
+}
+
+.todo-item-favorite-button {
+    -fx-font-size: 14px;
+    -fx-background-color: transparent;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+}
+
+.todo-item-favorite-button:hover {
+    -fx-background-color: rgba(229, 224, 224, 0.7);
+}

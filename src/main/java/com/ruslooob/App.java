@@ -51,7 +51,7 @@ public class App extends Application {
                         .scene(
                                 new Scene(
                                         splitPane()
-                                                .dividerPosition(0, 0.25)
+                                                .dividerPosition(0, 0.22)
                                                 .items(sidebarView.get(), todoListView.get())
                                                 .resizableWithParent(sidebarView.get(), false)
                                                 .build(),
@@ -60,7 +60,6 @@ public class App extends Application {
                                 )
                         )
                         .icon(new javafx.scene.image.Image(getResourceAsStream("/img/app-icon.png")))
-                        .onCloseRequest(this::primaryStageOncloseRequestOnAction)
                         .build();
 
         Platform.setImplicitExit(false);
@@ -118,26 +117,6 @@ public class App extends Application {
     @SuppressWarnings("all")
     private InputStream getResourceAsStream(String path) {
         return getClass().getResourceAsStream(path);
-    }
-
-    private void primaryStageOncloseRequestOnAction(WindowEvent event) {
-        //todo write alert builder
-        Alert alert = new Alert(
-                CONFIRMATION,
-                $("main_window_exit_confirmation_content"),
-                new ButtonType($("yes"), ButtonBar.ButtonData.OK_DONE),
-                new ButtonType($("no"), ButtonBar.ButtonData.CANCEL_CLOSE)
-        );
-        alert.setTitle($("main_window_exit_confirmation_title"));
-        alert.setHeaderText($("main_window_exit_confirmation_header"));
-        alert.showAndWait()
-             .ifPresent(response -> alertReceiveResponseOnAction(response, event));
-    }
-
-    private void alertReceiveResponseOnAction(ButtonType response, WindowEvent event) {
-        if (response.getButtonData() != ButtonBar.ButtonData.OK_DONE) {
-            event.consume();
-        }
     }
 
     @Override
