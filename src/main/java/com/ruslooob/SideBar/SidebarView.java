@@ -1,11 +1,8 @@
 package com.ruslooob.SideBar;
 
-import com.ruslooob.FontFamily;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.util.Callback;
@@ -24,34 +21,26 @@ public class SidebarView {
 
     public SidebarView() {
         view = createView();
+        view.getStylesheets().add("/css/sidebar.css");
     }
 
     private Parent createView() {
-        Label favoritesText = new Label($("sidebar_favorites_option_text"), new FontIcon(MaterialDesignS.STAR_OUTLINE));
-        favoritesText.setFont(Font.font(FontFamily.TIMES_NEW_ROMAN, 18));
-        favoritesText.setGraphicTextGap(10);
-        HBox favorites = new HBox(favoritesText);
-        Label trashText = new Label($("sidebar_trash_option_text"), new FontIcon(MaterialDesignT.TRASH_CAN));
-        trashText.setFont(Font.font(FontFamily.TIMES_NEW_ROMAN, 18));
-        trashText.setGraphicTextGap(10);
-        HBox trash = new HBox(trashText);
-        Label preferencesText = new Label($("sidebar_preferences_option_text"), new FontIcon(MaterialDesignC.COG_OUTLINE));
-        preferencesText.setFont(Font.font(FontFamily.TIMES_NEW_ROMAN, 18));
-        preferencesText.setGraphicTextGap(10);
-        HBox preferences = new HBox(preferencesText);
-        Label aboutText = new Label($("sidebar_about_option_text"), new FontIcon(MaterialDesignI.INFORMATION_OUTLINE));
-        aboutText.setFont(Font.font(FontFamily.TIMES_NEW_ROMAN, 18));
-        aboutText.setGraphicTextGap(10);
-        HBox aboutProgram = new HBox(aboutText);
-        favorites.setOnMouseClicked(event -> {
+        //        Label favoritesText = new Label($("sidebar_favorites_option_text"));
+        //        favoritesText.getStyleClass().add("favorites-label");
+        //        Label trashText = new Label($("sidebar_trash_option_text"));
+        //        trashText.getStyleClass().add("trash-label");
+        //        Label preferencesText = new Label($("sidebar_preferences_option_text"));
+        //        preferencesText.getStyleClass().add("preferences-label");
+        //        Label aboutText = new Label($("sidebar_about_option_text"));
+        //        aboutText.getStyleClass().add("about-label");
 
-        });
         ListView<String> container = new ListView<>(observableArrayList(
                 $("sidebar_favorites_option_text"),
                 $("sidebar_trash_option_text"),
                 $("sidebar_preferences_option_text"),
                 $("sidebar_about_option_text")
         ));
+
         container.setCellFactory(new Callback<>() {
             @Override
             public ListCell<String> call(ListView<String> param) {

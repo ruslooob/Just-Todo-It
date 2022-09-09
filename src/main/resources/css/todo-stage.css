@@ -1,0 +1,29 @@
+.todo-stage-container {
+    -fx-background-color: rgba(255, 247, 64, 0.5);
+}
+
+.buttons {
+    -fx-background-color: rgba(255, 247, 64, 0.6);
+    -fx-pref-width: 300px;
+    -fx-alignment: center-right;
+}
+
+.exit-button {
+    -fx-font-size: 18px;
+    -fx-padding: 5px 10px;
+    -fx-background-color: transparent;
+}
+
+.exit-button:hover {
+    -fx-background-color: rgba(229, 224, 224, 0.7);
+}
+
+.restore-button {
+    -fx-font-size: 18px;
+    -fx-padding: 5px 10px;
+    -fx-background-color: transparent;
+}
+
+.restore-button:hover {
+    -fx-background-color: rgba(229, 224, 224, 0.7);
+}

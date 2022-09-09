@@ -10,6 +10,8 @@ import javafx.scene.control.OverrunStyle;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignS;
 
 import static com.ruslooob.Helpers.BackgroundFillHelper.backgroundFill;
 import static com.ruslooob.Helpers.BorderStrokeHelper.borderStroke;
@@ -22,17 +24,16 @@ public class TodoItemCellView {
     Label header = new Label("");
     Label content = new Label("");
     Label createDate = new Label("");
-    Button favoriteButton = new IconButton();
+    Button favoriteButton = new Button("", new FontIcon(MaterialDesignS.STAR_OUTLINE));
 
     public TodoItemCellView() {
         view = create();
+        view.getStylesheets().add("/css/todo-item.css");
     }
 
     private Parent create() {
         VBox headerWithContent = vbox(10, header, content);
-        favoriteButton.setFont(Font.font(14));
-        favoriteButton.setBorder(null);
-        favoriteButton.setBackground(null);
+        favoriteButton.getStyleClass().add("favorite-button");
         HBox container = hbox()
                 .maxWidth(671.)
                 .background(

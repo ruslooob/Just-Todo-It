@@ -1,0 +1,10 @@
+.favorite-button {
+    -fx-font-size: 14px;
+    -fx-background-color: transparent;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+}
+
+.favorite-button:hover {
+    -fx-background-color: rgba(229, 224, 224, 0.7);
+}

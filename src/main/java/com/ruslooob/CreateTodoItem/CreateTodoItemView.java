@@ -26,8 +26,8 @@ public class CreateTodoItemView {
     private Region create() {
         VBox container = vbox(
                 15,
-                hbox(10, getHeader()),
-                hbox(10, getContent()),
+                getHeader(),
+                getContent(),
                 saveButton
         );
         container.setPadding(new Insets(10));
