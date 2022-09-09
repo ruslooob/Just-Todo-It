@@ -55,8 +55,9 @@ public class TodoListController {
                 todoItem,
                 command
         );
-        Stage stage = new TodoStage(createTodoItemView.get());
+        TodoStage stage = new TodoStage(createTodoItemView.get());
         stage.setTitle($("create_todo_window_title"));
+        stage.setHeader($("create_todo_window_header"));
         stage.show();
     }
 
@@ -74,8 +75,9 @@ public class TodoListController {
                 command
         );
         controller.start();
-        Stage stage = new TodoStage(editTodoItemView.get());
+        TodoStage stage = new TodoStage(editTodoItemView.get());
         stage.setTitle($("edit_todo_window_title"));
+        stage.setHeader(itemForReplace.getHeader());
         stage.show();
     }
 
