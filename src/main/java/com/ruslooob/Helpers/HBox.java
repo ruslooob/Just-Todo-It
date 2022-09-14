@@ -15,7 +15,7 @@ public class HBox {
         return container;
     }
 
-    public HBox prefWidth(Double width) {
+    public HBox prefWidth(double width) {
         container.setPrefWidth(width);
         return this;
     }

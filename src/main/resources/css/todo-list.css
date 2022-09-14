@@ -8,17 +8,15 @@
     -fx-background-color: rgba(72, 219, 251, 0.3);
     -fx-padding: 20px;
     -fx-vgap: 20px;
+    -fx-pref-width: 800px;
+}
+
+.scroll-pane {
+    -fx-pref-width: 800px;
 }
 
 .list-view {
-    -fx-background-color: white;
-    -fx-border-radius: 10;
-    -fx-padding: 0;
-}
-
-.list-cell {
-    -fx-vgap: 10px;
-    -fx-background-color: transparent;
+    -fx-focus-color: transparent;
 }
 
 .list-cell:filled:selected {
@@ -42,6 +40,7 @@
 .todo-item-content {
     -fx-font-family: "Times New Roman";
     -fx-font-size: 16px;
+    -fx-background-color: transparent;
 }
 
 .todo-item-create-date {

@@ -41,7 +41,6 @@ public class TodoItemCellView {
                         getCreateDate(),
                         getFavoriteButton()
                 ).build();
-        content.setTextOverrun(OverrunStyle.ELLIPSIS);
         return new StackPane(container);
     }
 
@@ -63,6 +62,7 @@ public class TodoItemCellView {
     Labeled getContent() {
         if (content == null) {
             content = new Label("");
+            content.setTextOverrun(OverrunStyle.ELLIPSIS);
             content.getStyleClass().addAll("todo-item-content", "label");
         }
         return content;

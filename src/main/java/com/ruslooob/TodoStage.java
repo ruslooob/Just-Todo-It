@@ -1,15 +1,11 @@
 package com.ruslooob;
 
+import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Labeled;
-import javafx.scene.control.OverrunStyle;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
-import javafx.scene.text.TextAlignment;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.jetbrains.annotations.NotNull;
@@ -18,8 +14,8 @@ import org.kordamp.ikonli.materialdesign2.MaterialDesignR;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignW;
 
 
+/*todo сделать todo stage часть вьюхи, чтобы можно было внутри него получать доступ к header-у*/
 public class TodoStage extends Stage {
-
     private Label header;
     private Button restoreButton;
     private Button exitButton;
@@ -43,22 +39,50 @@ public class TodoStage extends Stage {
     }
 
     private Node getTopPane() {
-        HBox topPane = new HBox(getHeader(), getRestoreButton(), getExitButton());
+        HBox headerContainer = new HBox(getHeader());
+        headerContainer.getStyleClass().add("header-container");
+        HBox topPane = new HBox(headerContainer, getRestoreButton(), getExitButton());
+        topPane.setAlignment(Pos.CENTER_RIGHT);
+        HBox.setHgrow(headerContainer, Priority.ALWAYS);
+        headerContainer.setAlignment(Pos.CENTER);
         topPane.setOnMousePressed(pressEvent -> {
             topPane.setOnMouseDragged(dragEvent -> {
                 setX(dragEvent.getScreenX() - pressEvent.getSceneX());
                 setY(dragEvent.getScreenY() - pressEvent.getSceneY());
             });
         });
+        MenuItem alwaysOnTopMenuItem = new MenuItem("Поверх других");
+        alwaysOnTopMenuItem.setOnAction(event -> setAlwaysOnTop(!isAlwaysOnTop()));
+        MenuItem renameNoteMenuItem = new MenuItem("Переименовать");
+        renameNoteMenuItem.setOnAction(this::renameNoteMenuItem);
+
+        ContextMenu contextMenu = new ContextMenu(alwaysOnTopMenuItem, renameNoteMenuItem);
+        topPane.setOnContextMenuRequested(e -> {
+            contextMenu.show(topPane.getScene().getWindow(), e.getScreenX(), e.getScreenY());
+        });
         topPane.getStyleClass().add("top-pane");
         return topPane;
     }
 
-    private Labeled getHeader() {
+    private void renameNoteMenuItem(ActionEvent event) {
+        Stage stage = new Stage();
+        TextField textField = new TextField();
+        textField.setText(getHeader().getText());
+        textField.setPromptText("Название");
+        Button saveButton = new Button("Сохранить");
+        saveButton.setOnAction(event1 -> {
+            setHeader(textField.getText());
+            stage.close();
+        });
+        VBox renameView = new VBox(15, textField, saveButton);
+        Scene scene = new Scene(renameView, 200, 100);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private Label getHeader() {
         if (header == null) {
             header = new Label("");
-            header.setTextAlignment(TextAlignment.LEFT);
-            header.setTextOverrun(OverrunStyle.ELLIPSIS);
             header.getStyleClass().add("header");
         }
         return header;

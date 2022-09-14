@@ -12,6 +12,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
 import static com.ruslooob.LangLoader.$;
 import static javafx.collections.FXCollections.observableArrayList;
 
+/*сделать переходы*/
 public class SidebarView {
 
     private final Parent view;
@@ -52,6 +53,7 @@ public class SidebarView {
                 };
             }
         });
+        container.getStyleClass().add("container");
         return new StackPane(container);
     }
 

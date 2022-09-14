@@ -1,7 +1,15 @@
+.container {
+    -fx-pref-width: 200px;
+    -fx-focus-color: transparent;
+}
+
 .list-cell:filled:selected {
     -fx-background-color: rgba(193, 225, 236, 0.5);
     -fx-text-fill: black;
+    -fx-focus-color: transparent;
 }
+
+
 
 .label {
     -fx-font-family: "Times New Roman";

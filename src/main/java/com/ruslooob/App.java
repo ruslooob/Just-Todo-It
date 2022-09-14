@@ -10,20 +10,16 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static com.ruslooob.Helpers.SplitPaneHelper.splitPane;
+import static com.ruslooob.Helpers.HBoxHelpers.hbox;
 import static com.ruslooob.Helpers.StageHelpers.stage;
 import static com.ruslooob.LangLoader.$;
-import static javafx.scene.control.Alert.AlertType.CONFIRMATION;
 import static javafx.scene.control.Alert.AlertType.ERROR;
 
 public class App extends Application {
@@ -35,7 +31,7 @@ public class App extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
+    /*todo подумать над созданием мапы команды и пробраса дальше*/
     @Override
     public void start(Stage primaryStage) throws Exception {
         TodoList todoList = databaseService.loadInitStateFromFile();
@@ -50,14 +46,9 @@ public class App extends Application {
                         .title($("main_window_title"))
                         .scene(
                                 new Scene(
-                                        splitPane()
-                                                .dividerPosition(0, 0.22)
-                                                .items(sidebarView.get(), todoListView.get())
-                                                .resizableWithParent(sidebarView.get(), false)
-                                                .build(),
-                                        1000,
-                                        570
+                                        hbox().prefWidth(1000).childrens(sidebarView.get(), todoListView.get()).build()
                                 )
+
                         )
                         .icon(new javafx.scene.image.Image(getResourceAsStream("/img/app-icon.png")))
                         .build();

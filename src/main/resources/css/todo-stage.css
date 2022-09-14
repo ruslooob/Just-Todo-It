@@ -2,14 +2,14 @@
     -fx-background-color: rgba(255, 255, 153, 1);
 }
 
+
 .header {
-    -fx-text-alignment: center;
+    -fx-text-overrun: ellipsis;
+    -fx-max-width: 160px;
 }
 
 .top-pane {
     -fx-background-color: rgba(249, 249, 149, 1);
-    /*-fx-pref-width: 300px;*/
-    -fx-alignment: center-right;
 }
 
 .exit-button {

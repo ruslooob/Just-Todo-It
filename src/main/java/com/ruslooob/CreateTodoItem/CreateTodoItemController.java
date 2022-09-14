@@ -17,7 +17,6 @@ public class CreateTodoItemController {
 
     private void setView(CreateTodoItemView view) {
         view.saveButton.setOnAction(event -> {
-            todoItem.setHeader(view.header.getText());
             todoItem.setContent(view.content.getText());
             createTodoItemCommand.execute();
             ((Stage)((Node)(event.getTarget())).getScene().getWindow()).close();
