@@ -45,6 +45,7 @@ public class App extends Application {
                 stage(primaryStage)
                         .title($("main_window_title"))
                         .scene(
+                                /*todo решить проблему с размерами сайдбара и листвью*/
                                 new Scene(
                                         hbox().prefWidth(1000).childrens(sidebarView.get(), todoListView.get()).build()
                                 )
@@ -52,7 +53,7 @@ public class App extends Application {
                         )
                         .icon(new javafx.scene.image.Image(getResourceAsStream("/img/app-icon.png")))
                         .build();
-
+//        primaryStage.initStyle(StageStyle.UNDECORATED);
         Platform.setImplicitExit(false);
         addIconToTray();
         primaryStage.show();

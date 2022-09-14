@@ -2,10 +2,21 @@
     -fx-pref-width: 30px;
     -fx-pref-height: 25px;
     -fx-font-size: 14px;
+    -fx-background-radius: 20px;
+    -fx-background-color: white;
+    -fx-border-width: 1px;
+    -fx-border-radius: 20px;
+    -fx-border-color: black;
+}
+
+.button:hover {
+    -fx-background-color: rgba(229, 224, 224, 0.7);
 }
 
 .container {
-    -fx-background-color: rgba(72, 219, 251, 0.3);
+    /*-fx-background-color: rgba(72, 219, 251, 0.3);*/
+    /*-fx-background-color: rgba(188, 229, 243, 0.5);*/
+    -fx-background-color: white;
     -fx-padding: 20px;
     -fx-vgap: 20px;
     -fx-pref-width: 800px;

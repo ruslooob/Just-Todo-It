@@ -1,6 +1,7 @@
 package com.ruslooob;
 
 import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -10,6 +11,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.jetbrains.annotations.NotNull;
 import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignD;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignP;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignR;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignW;
 
@@ -52,9 +55,13 @@ public class TodoStage extends Stage {
             });
         });
         MenuItem alwaysOnTopMenuItem = new MenuItem("Поверх других");
+        /*todo это свойство нужно хранить в самой заметке, чтобы при закрытии приложении оно все равно сохранялось*/
         alwaysOnTopMenuItem.setOnAction(event -> setAlwaysOnTop(!isAlwaysOnTop()));
+        alwaysOnTopMenuItem.setGraphic(new FontIcon(MaterialDesignD.DOCK_WINDOW));
+
         MenuItem renameNoteMenuItem = new MenuItem("Переименовать");
         renameNoteMenuItem.setOnAction(this::renameNoteMenuItem);
+        renameNoteMenuItem.setGraphic(new FontIcon(MaterialDesignP.PENCIL_OUTLINE));
 
         ContextMenu contextMenu = new ContextMenu(alwaysOnTopMenuItem, renameNoteMenuItem);
         topPane.setOnContextMenuRequested(e -> {
@@ -67,6 +74,7 @@ public class TodoStage extends Stage {
     private void renameNoteMenuItem(ActionEvent event) {
         Stage stage = new Stage();
         TextField textField = new TextField();
+        Label header = new Label("Переименовать");
         textField.setText(getHeader().getText());
         textField.setPromptText("Название");
         Button saveButton = new Button("Сохранить");
@@ -74,8 +82,13 @@ public class TodoStage extends Stage {
             setHeader(textField.getText());
             stage.close();
         });
-        VBox renameView = new VBox(15, textField, saveButton);
-        Scene scene = new Scene(renameView, 200, 100);
+        Button cancelButton = new Button("Отменить");
+        cancelButton.setOnAction(event2 -> {
+            stage.close();
+        });
+        VBox renameView = new VBox(15, header, textField, new HBox(15, saveButton, cancelButton));
+        renameView.setPadding(new Insets(20));
+        Scene scene = new Scene(renameView, 250, 150);
         stage.setScene(scene);
         stage.show();
     }
