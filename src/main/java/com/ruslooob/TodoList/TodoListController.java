@@ -4,18 +4,14 @@ import com.ruslooob.Commands.Command;
 import com.ruslooob.Commands.CreateTodoItemCommand;
 import com.ruslooob.Commands.DeleteTodoItemCommand;
 import com.ruslooob.Commands.EditTodoItemCommand;
-import com.ruslooob.CreateTodoItem.CreateTodoItemController;
-import com.ruslooob.CreateTodoItem.CreateTodoItemView;
-import com.ruslooob.EditTodoItem.EditTodoItemController;
-import com.ruslooob.EditTodoItem.EditTodoItemView;
+import com.ruslooob.TodoItemDialog.TodoItemDialogController;
+import com.ruslooob.TodoItemDialog.TodoItemDialog;
 import com.ruslooob.TodoItem;
-import com.ruslooob.TodoStage;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.stage.Stage;
 
 import static com.ruslooob.LangLoader.$;
 import static javafx.scene.control.Alert.AlertType.CONFIRMATION;
@@ -48,17 +44,16 @@ public class TodoListController {
 
     private void addButtonOnAction(ActionEvent event) {
         TodoItem todoItem = new TodoItem();
-        Command command = new CreateTodoItemCommand(todoList.getTodoItems(), todoItem);
-        CreateTodoItemView createTodoItemView = new CreateTodoItemView();
-        CreateTodoItemController controller = new CreateTodoItemController(
-                createTodoItemView,
+        todoItem.setHeader("Новая заметка");
+        TodoItemDialog todoItemDialog = new TodoItemDialog();
+        CreateTodoItemCommand createTodoItemCommand = new CreateTodoItemCommand(todoList.getTodoItems(), todoItem);
+        TodoItemDialogController controller = new TodoItemDialogController(
+                todoItemDialog,
                 todoItem,
-                command
+                createTodoItemCommand
         );
-        TodoStage stage = new TodoStage(createTodoItemView.get());
-        stage.setTitle($("create_todo_window_title"));
-        stage.setHeader($("create_todo_window_header"));
-        stage.show();
+        controller.start();
+        todoItemDialog.show();
     }
 
     private void editButtonOnAction(ActionEvent event) {
@@ -68,17 +63,14 @@ public class TodoListController {
     private void showEditTodoItemDialog() {
         TodoItem itemForReplace = view.listItems.getSelectionModel().getSelectedItem();
         Command command = new EditTodoItemCommand(itemForReplace);
-        EditTodoItemView editTodoItemView = new EditTodoItemView();
-        EditTodoItemController controller = new EditTodoItemController(
-                editTodoItemView,
+        TodoItemDialog todoItemDialog = new TodoItemDialog();
+        TodoItemDialogController controller = new TodoItemDialogController(
+                todoItemDialog,
                 itemForReplace,
                 command
         );
         controller.start();
-        TodoStage stage = new TodoStage(editTodoItemView.get());
-        stage.setTitle($("edit_todo_window_title"));
-        stage.setHeader(itemForReplace.getHeader());
-        stage.show();
+        todoItemDialog.show();
     }
 
     private void deleteButtonOnAction(ActionEvent event) {

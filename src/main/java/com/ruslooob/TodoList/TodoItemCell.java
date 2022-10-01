@@ -2,7 +2,6 @@ package com.ruslooob.TodoList;
 
 import com.ruslooob.TodoItem;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.ListCell;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignS;

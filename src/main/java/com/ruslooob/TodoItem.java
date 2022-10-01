@@ -10,12 +10,13 @@ import java.util.Objects;
 
 
 public class TodoItem {
-    // todo что делать с id
     private Long id;
     private final StringProperty header = new SimpleStringProperty("");
     private final StringProperty content = new SimpleStringProperty("");
     private final SimpleObjectProperty<LocalDate> createDate = new SimpleObjectProperty<>(LocalDate.of(2022, Month.APRIL, 10));
     private boolean isFavorite = false;
+
+    private boolean isDeleted = false;
 
     public TodoItem(String header, String content) {
         setHeader(header);
@@ -91,4 +92,11 @@ public class TodoItem {
         isFavorite = favorite;
     }
 
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
 }

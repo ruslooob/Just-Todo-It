@@ -3,14 +3,13 @@ package com.ruslooob.TodoList;
 import com.ruslooob.Controls.IconButton;
 import com.ruslooob.FontFamily;
 import com.ruslooob.TodoItem;
-import javafx.geometry.HPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -22,7 +21,7 @@ import static com.ruslooob.LangLoader.$;
 
 public class TodoListView {
 
-    private final Parent view;
+    final Parent view;
     // todo make builder for GridPane
     VBox container = new VBox(20);
     Label header = new Label();
@@ -42,20 +41,13 @@ public class TodoListView {
         view.getStylesheets().add("/css/todo-list.css");
     }
 
-    private Parent create() {
+    Parent create() {
         addButton.getStyleClass().addAll("button");
         editButton.getStyleClass().add("button");
         deleteButton.getStyleClass().add("button");
 
         container.getStyleClass().add("container");
-//        GridPane.setConstraints(header, 0, 0);
-//        GridPane.setConstraints(actionButtons, 0, 1);
-//        GridPane.setConstraints(listItems, 0, 2);
         container.getChildren().addAll(createHeader(), createToolBar(), createListItems());
-//        ScrollPane scrollPane = new ScrollPane(container);
-//        scrollPane.setFitToWidth(true);
-//        scrollPane.setFitToHeight(true);
-//        scrollPane.getStyleClass().add("scroll-pane");
         return container;
     }
 
@@ -75,7 +67,6 @@ public class TodoListView {
     ListView<TodoItem> createListItems() {
         listItems.setPlaceholder(new Label($("empty_todo_list_text")));
         listItems.setCellFactory(param -> new TodoItemCell());
-        /*fix this hardcode*/
         listItems.getStylesheets().add("list-items");
         return listItems;
     }

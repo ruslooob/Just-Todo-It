@@ -1,29 +1,21 @@
-package com.ruslooob.CreateTodoItem;
+package com.ruslooob.TodoItemDialog;
 
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
+import com.ruslooob.TodoStage;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 
-import static com.ruslooob.LangLoader.$;
-
-public class CreateTodoItemView {
-
+public class TodoItemDialog extends TodoStage {
     private final Region view;
     TextArea content;
-    Button saveButton = new Button($("create_todo_save_button_text"));
 
-    public CreateTodoItemView() {
+    public TodoItemDialog() {
         this.view = create();
         view.getStylesheets().add("/css/create-todo.css");
-
+        setCenter(content);
     }
 
     private Region create() {
-        VBox container = new VBox(getContent(), saveButton);
-        container.setPadding(new Insets(10));
-        return container;
+        return getContent();
     }
 
     private TextArea getContent() {
@@ -37,8 +29,8 @@ public class CreateTodoItemView {
         return content;
     }
 
-    public Region get() {
-        return view;
+    public void setHeader(String header) {
+        getHeader().setText(header);
     }
 
 }

@@ -53,7 +53,6 @@ public class App extends Application {
                         )
                         .icon(new javafx.scene.image.Image(getResourceAsStream("/img/app-icon.png")))
                         .build();
-//        primaryStage.initStyle(StageStyle.UNDECORATED);
         Platform.setImplicitExit(false);
         addIconToTray();
         primaryStage.show();
