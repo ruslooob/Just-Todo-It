@@ -58,12 +58,6 @@ public abstract class TodoStage extends Stage {
         topPane.setAlignment(Pos.CENTER_RIGHT);
         HBox.setHgrow(headerContainer, Priority.ALWAYS);
         headerContainer.setAlignment(Pos.CENTER);
-        topPane.setOnMousePressed(pressEvent -> {
-            topPane.setOnMouseDragged(dragEvent -> {
-                setX(dragEvent.getScreenX() - pressEvent.getSceneX());
-                setY(dragEvent.getScreenY() - pressEvent.getSceneY());
-            });
-        });
         MenuItem alwaysOnTopMenuItem = new MenuItem("Поверх других");
         /*todo это свойство нужно хранить в самой заметке, чтобы при закрытии приложении оно все равно сохранялось*/
         alwaysOnTopMenuItem.setOnAction(event -> setAlwaysOnTop(!isAlwaysOnTop()));

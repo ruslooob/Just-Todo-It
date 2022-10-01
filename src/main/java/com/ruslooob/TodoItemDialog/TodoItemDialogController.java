@@ -1,6 +1,7 @@
 package com.ruslooob.TodoItemDialog;
 
 import com.ruslooob.Commands.Command;
+import com.ruslooob.FXResizeHelper;
 import com.ruslooob.TodoItem;
 
 public class TodoItemDialogController {
@@ -22,6 +23,7 @@ public class TodoItemDialogController {
             todoItem.setContent(view.content.getText());
             command.execute();
         });
+        new FXResizeHelper(view, 10, 10);
     }
 
 }
